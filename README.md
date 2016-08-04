@@ -22,26 +22,39 @@ from the root directory.
 
 ### Deploying on Tomcat
 
-TODO
+First build the WAR with
+
+```sh
+$ mvn clean package
+```
+
+Then copy the output WAR to Tomcat's webapps directory.
+
+On Ubuntu the command is
+
+```sh
+$ sudo cp target/demo-0.0.1-SNAPSHOT.war /var/lib/tomcat7/webapps/demo.war
+```
+
 
 ### Using
 
 You can see what urls are available using curl:
 
 ```sh
-$ curl localhost:8080
+$ curl localhost:8080/demo
 ```
 
 You can view existing people objects using a similar request:
 
 ```sh
-$ curl localhost:8080/persons
+$ curl localhost:8080/demo/persons
 ```
 
 and can create new ones using a POST:
 
 ```sh
-$ curl -x POST -H "Content-Type:application/json" -d '{ "firstName" : "Karl", "lastName" : "Penzhorn" }' localhost:8080/persons
+$ curl -X POST -H "Content-Type:application/json" -d '{ "firstName" : "Karl", "lastName" : "Penzhorn" }' localhost:8080/demo/persons
 ```
 
 ### Todo
